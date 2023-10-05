@@ -23,10 +23,11 @@ static CODE_ERRORS com_out(FILE *stream_write);
 CODE_ERRORS assembling(char file_to_read[], char file_to_write[])
 {
     FILE *stream_read = open_file(file_to_read, "r");
-    FILE *stream_write = open_file(file_to_write, 'w');
+    FILE *stream_write = open_file(file_to_write, "w");
 
     compiling_assembler(stream_read, stream_write);
 
+    fclose(stream_write);
 }
 
 CODE_ERRORS compiling_assembler(FILE *stream_read, FILE *stream_write)
@@ -49,33 +50,35 @@ CODE_ERRORS compile_one_str_ass(len_arr *ptr_str, FILE *stream_write)
     fprintf(stderr, "compile_one_str %s\n", ((char *)ptr_str->arr));
     size_t size = strcpy_to_space(command, ((char *)ptr_str->arr));
 
+    LOG(1, stderr, "str in %s\n", command);
+
     ptr_str->arr = (char *)((char *)ptr_str->arr + size);
 
-        if(strcmp(code_com.push, command))
+        if(strcmp(code_com.push, command) == 0)
         {
             com_push(stream_write, atoi(((char *)ptr_str->arr)));
         }
-        else if(strcmp(code_com.add, command))
+        else if(strcmp(code_com.add, command) == 0)
         {
             com_add(stream_write);
         }
-        else if(strcmp(code_com.sub, command))
+        else if(strcmp(code_com.sub, command) == 0)
         {
             com_sub(stream_write);
         }
-        else if(strcmp(code_com.mul, command))
+        else if(strcmp(code_com.mul, command) == 0)
         {
             com_mul(stream_write);
         }
-        else if(strcmp(code_com.divis, command))
+        else if(strcmp(code_com.divis, command) == 0)
         {
             com_divis(stream_write);
         }
-        else if(strcmp(code_com.out, command))
+        else if(strcmp(code_com.out, command) == 0)
         {
             com_out(stream_write);
         }
-        else if(strcmp(code_com.HLT, command))
+        else if(strcmp(code_com.HLT, command) == 0)
         {
             com_HLT(stream_write);
         }

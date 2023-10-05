@@ -38,7 +38,7 @@ len_arr *find_one_str(len_arr *buff, int *amount_characters)
     while(*(not_anal_buff + len_str) != '\n')
     {
         len_str += 1;
-        if (*amount_characters + len_str == buff->size_arr) break;
+        if (*amount_characters + len_str == (buff->size_arr - 1 )) {     *amount_characters += len_str; return nullptr;}
     }
 
     *(not_anal_buff + len_str) = '\0';
@@ -109,15 +109,14 @@ len_arr *find_all_str(len_arr *buffer)
         if (size_arr == counter)
         {
             size_arr = size_arr * FACTOR_SIZE;
-            arr_str = (len_arr *)increase_size_array((void *)arr_str, size_arr);
+            arr_str = (len_arr *)increase_size_array((void *) arr_str, size_arr);
         }
-        *(arr_str + counter) = *s;
+        if (s != nullptr)  { *(arr_str + counter) = *s; free(s);}
         LOG(1, stderr, "find_all_str free %p\n", s);
-        free(s);
 
         counter++;
 
-    }while(amount_characters < buffer->size_arr);
+    }while(amount_characters < (buffer->size_arr - 1));
 
     return gen_struct_len_arr((void *)arr_str, counter);
 }

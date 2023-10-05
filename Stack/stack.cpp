@@ -218,6 +218,8 @@ CODE_ERRORS _Stack_Dump(Stack *ptr_stk, Verification_code ver_code, const int LI
 
     fprintf(stderr, "begin _Stack_Dump \n ");
 
+        exit(1);
+
     if (ver_code.stk_null)
     {
         fprintf(stderr, "stk_null - nullptr");
@@ -281,7 +283,7 @@ CODE_ERRORS _Stack_Dump(Stack *ptr_stk, Verification_code ver_code, const int LI
         close_file_for_debug(stream_out);
     }
     fprintf(stderr, "end _Stack_Dump \n");
-
+    exit(1);
     return ALL_GOOD;
 
 }

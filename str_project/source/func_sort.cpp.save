@@ -1,0 +1,64 @@
+#include "str_input.h"
+#include "func_sort.h"
+#include "str_func.h"
+
+int compare_str_len_arr(len_arr * str1, len_arr * str2, int revers)
+{
+    assert(str1 != nullptr);
+    assert(str2 != nullptr);
+    int index_1 = 0;
+    int index_2 = 0;
+    int delta_index = 0;
+
+    if (revers)
+    {
+        index_1 = str1->size_arr;
+        index_2 = str2->size_arr;
+        delta_index = -1;
+    }
+    else
+    {
+        index_1 = 0;
+        index_2 = 0;
+        delta_index = 1;
+    }
+
+    int res_comp = 0;
+    char *str_1 = (char *)(str1->arr);
+    char *str_2 = (char *)(str2->arr);
+
+    LOG("compare_str1 %s\n", str_1);
+    LOG("compare_str2 %s\n", str_2);
+
+    while((index_1 != -1) and (index_2 != -1)
+            and res_comp == 0)
+    {
+        if (!is_letter_rus(*(str_1 + index_1)))
+        {
+            index_1 += delta_index;
+            continue;
+        }
+
+        if (!is_letter_rus(*(str_2 + index_2)))
+        {
+            index_2 += delta_index;
+            continue;
+        }
+
+        if (*(str_1 + index_1) > *(str_2 + index_2)) res_comp = 1;
+
+        else if (*(str_1 + index_1) < *(str_2 + index_2)) res_comp = -1;
+
+        index_1 += delta_index;
+        index_2 += delta_index;
+    }
+
+    if (res_comp == 0)
+    {
+        if ((*(str_1 + index_1) != '\0') and (*(str_2 + index_2) == '\0')) res_comp = -1;
+
+        else if ((*(str_1 + index_1) == '\0') and (*(str_2 + index_2) != '\0')) res_comp = 1;
+
+    }
+    return res_comp;
+}

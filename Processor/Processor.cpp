@@ -3,6 +3,7 @@
 #include "command.h"
 #include "assembler.h"
 #include "dis_assembler.h"
+#include "virtual_machine.h"
 #include "Processor.h"
 
 int main()

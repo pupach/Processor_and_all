@@ -13,7 +13,7 @@ const int AMOUNT_VAR_IN_PROC = 4;
 
 struct Processor
 {
-    Stack *stk = Stack
+    Stack *stk = nullptr;
     int variables[AMOUNT_VAR_IN_PROC] = {};
 };
 

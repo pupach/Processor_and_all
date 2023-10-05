@@ -20,7 +20,7 @@ CODE_ERRORS run_program_from_file(char name_com_file[])
     int res_com_fscanf = 0;
     int command = POISON_VAL;
     bool flag_hlt = false;
-    FILE *stream_read = open_file(name_com_file, 'r');
+    FILE *stream_read = open_file(name_com_file, "r");
 
     if (stream_read == nullptr) return PTR_NULL;
 
@@ -35,6 +35,7 @@ CODE_ERRORS run_program_from_file(char name_com_file[])
     do
     {
         res_com_fscanf = fscanf(stream_read, "%d", &command);
+
         if (res_com_fscanf == 0)
         {
             LOG(1, stderr, "bad code");
@@ -73,6 +74,7 @@ CODE_ERRORS run_program_from_file(char name_com_file[])
         };
     }while(!flag_hlt);
     Stack_Destructor(Cpu_proc->stk);
+    free(Cpu_proc);
 }
 
 static CODE_ERRORS com_push(Stack *stk, FILE *stream_read)

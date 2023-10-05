@@ -27,10 +27,11 @@ static STR_CODE_COMMANDS code_com = {};
 CODE_ERRORS dis_assembling(char file_to_read[], char file_to_write[])
 {
     FILE *stream_read = open_file(file_to_read, "r");
-    FILE *stream_write = open_file(file_to_write, 'w');
+    FILE *stream_write = open_file(file_to_write, "w");
 
     compiling_dis_assembler(stream_read, stream_write);
 
+    fclose(stream_write);
 }
 
 CODE_ERRORS compiling_dis_assembler(FILE *stream_read, FILE *stream_write)

@@ -1,0 +1,17 @@
+
+
+int puts(const char *str)
+{
+    while(*str)
+    {
+        printf("%s", *str);
+        str++;
+    }
+    return 1;
+
+}
+
+int main()
+{
+    puts("dsds");
+}

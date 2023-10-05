@@ -1,0 +1,13 @@
+#include <stdlib.h>
+#include <TXLib.h>  // » все, и все, больше ниче не надо, трал€л€л€л€!!!
+#include <stdio.h>
+#include <math.h>
+
+long long int hash_my(char *ptr_on_beg_calc, size_t am_byte)
+{
+    unsigned long long int res_hash = 0;
+    for (size_t i = 0; i < am_byte; i++)
+    {
+        res_hash +=
+    }
+}
